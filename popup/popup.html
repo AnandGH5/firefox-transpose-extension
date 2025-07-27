@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <div class="container">
+    <label for="pitch-slider">Pitch Shift (Semitones)</label>
+    <div class="slider-container">
+      <input type="range" id="pitch-slider" min="-12" max="12" step="1" value="0">
+      <output id="pitch-value">0</output>
+    </div>
+    <button id="reset-button">Reset</button>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

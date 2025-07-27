@@ -1,0 +1,24 @@
+{
+  "manifest_version": 2,
+  "name": "Audio Transposer",
+  "version": "1.0",
+  "description": "Transposes the pitch of browser audio in real-time.",
+  "homepage_url": "https://github.com/AnandGH5/firefox-transpose-extension",
+  "icons": {
+    "48": "icons/icon-48.png"
+  },
+  "permissions": [
+    "activeTab"
+  ],
+  "browser_action": {
+    "default_icon": "icons/icon-48.png",
+    "default_title": "Audio Transposer",
+    "default_popup": "popup/popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": ["<all_urls>"],
+      "js": ["content_scripts/main.js"]
+    }
+  ]
+}
