@@ -3,10 +3,13 @@
 
 let pitchShiftNode = null;
 let connectedVideoElement = null;
+let prevVideoElementSrc = null;
 let isAudioSetup = false;
 
 async function setupAudio() {
+
     const videoElement = document.querySelector('video');
+    prevVideoElementSrc = videoElement.src;
     if (!videoElement || connectedVideoElement === videoElement) {
         return;
     }
@@ -40,5 +43,17 @@ async function handleMessage(request, sender, sendResponse) {
         pitchShiftNode.pitch = request.pitchValue;
     }
 }
+// NEW: Function to watch for video changes on YouTube
+function startVideoWatcher() {
+    setInterval(() => {
+        const curVideoElementSrc = document.querySelector('video').src;
+        if (curVideoElementSrc != prevVideoElementSrc) {
+            prevVideoElementSrc = curVideoElementSrc;
+            pitchShiftNode.pitch = 0;
+        }
+    }, 1000); // Check every second
+}
 
+// Start the watcher
+startVideoWatcher();
 browser.runtime.onMessage.addListener(handleMessage);

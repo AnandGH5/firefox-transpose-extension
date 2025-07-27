@@ -10,22 +10,21 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // This is the new function that sends the message to the content script
-    function sendMessageToContentScript(value) {
+  function sendMessageToContentScript(value) {
     browser.tabs.query({ active: true, currentWindow: true })
-        .then(tabs => {
+      .then(tabs => {
         if (tabs.length > 0) {
-            // Log to the popup's console right before sending
-            console.log(`Sending pitch value to tab ${tabs[0].id}:`, value); 
-            browser.tabs.sendMessage(tabs[0].id, {
+          // Log to the popup's console right before sending
+          browser.tabs.sendMessage(tabs[0].id, {
             pitchValue: value
-            });
+          });
         }
-        })
-        .catch(error => {
+      })
+      .catch(error => {
         // Log errors to the popup's console
         console.error("Could not send message:", error);
-        });
-    }
+      });
+  }
 
   // --- Event Listeners ---
   pitchSlider.addEventListener('input', () => {
